@@ -1,5 +1,7 @@
-package com.example.mimeay_security.config;
+package com.mimeay.mimeay_security.config;
 
+import com.mimeay.mimeay_security.helpers.UserHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,32 +16,24 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfiguration {
 
+    @Autowired
+    UserHelper userHelper;
+
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().antMatchers("/public/**");
+        return web -> web.ignoring()
+                .antMatchers("/public/**")
+                .antMatchers("/login");
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests(
-                auth ->
-                        auth.antMatchers("/no-public/world-role").hasAnyRole("USER")
-                                .antMatchers("/no-public/admin-role").hasAnyRole("ADMIN")
-                                .anyRequest().authenticated()
+                auth -> auth.anyRequest().authenticated()
         ).addFilterBefore(
-                new WebFilter(),
+                new WebFilter(userHelper),
                 UsernamePasswordAuthenticationFilter.class
         );
         return httpSecurity.build();
     }
-
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsService() {
-//        UserDetails user = User.withDefaultPasswordEncoder()
-//                .username("user")
-//                .password("user")
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
 }

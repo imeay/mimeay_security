@@ -1,4 +1,4 @@
-package com.example.mimeay_security;
+package com.mimeay.mimeay_security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

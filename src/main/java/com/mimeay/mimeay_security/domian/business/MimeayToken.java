@@ -1,8 +1,7 @@
-package com.example.mimeay_security;
+package com.mimeay.mimeay_security.domian.business;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,10 +12,10 @@ import java.util.List;
  */
 public class MimeayToken implements Authentication {
 
-    private final List<SimpleGrantedAuthority> authorities;
+    private final List<GrantedAuthority> authorities;
     private MimeayDetail mimeayDetail;
 
-    public MimeayToken(MimeayDetail mimeayDetail,List<SimpleGrantedAuthority> authorities) {
+    public MimeayToken(MimeayDetail mimeayDetail,List<GrantedAuthority> authorities) {
         this.authorities = authorities;
         this.mimeayDetail = mimeayDetail;
     }
@@ -53,6 +52,6 @@ public class MimeayToken implements Authentication {
 
     @Override
     public String getName() {
-        return null;
+        return mimeayDetail.getNickname();
     }
 }

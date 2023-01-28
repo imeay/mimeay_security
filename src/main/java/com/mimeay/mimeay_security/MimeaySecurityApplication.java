@@ -1,8 +1,12 @@
-package com.example.mimeay_security;
+package com.mimeay.mimeay_security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(jsr250Enabled = true)
 @SpringBootApplication
 public class MimeaySecurityApplication {
 

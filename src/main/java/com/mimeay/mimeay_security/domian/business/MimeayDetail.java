@@ -1,4 +1,6 @@
-package com.example.mimeay_security;
+package com.mimeay.mimeay_security.domian.business;
+
+import java.util.List;
 
 /**
  * @author: chenxiaochi
@@ -8,10 +10,12 @@ public class MimeayDetail {
 
     Long id;
     String nickname;
+    List<String> roles;
 
-    public MimeayDetail(Long id, String nickname) {
+    public MimeayDetail(Long id, String nickname, List<String> roles) {
         this.id = id;
         this.nickname = nickname;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -28,5 +32,13 @@ public class MimeayDetail {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }
