@@ -80,7 +80,7 @@ public class IndexController {
      * @param mimeayDetail
      * @return
      */
-    @RolesAllowed("ROLE_USER")
+    @RolesAllowed("USER")
     @GetMapping("/no-public/user-role")
     String role(
             @AuthenticationPrincipal MimeayDetail mimeayDetail
@@ -92,7 +92,7 @@ public class IndexController {
      * @param mimeayDetail
      * @return
      */
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     @GetMapping("/no-public/admin-role")
     String adminRole(
             @AuthenticationPrincipal MimeayDetail mimeayDetail

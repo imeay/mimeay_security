@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -35,5 +36,14 @@ public class SecurityConfiguration {
                 UsernamePasswordAuthenticationFilter.class
         );
         return httpSecurity.build();
+    }
+
+    /**
+     * 调整角色前缀，不注入默认会加 ROLE_
+     * @return
+     */
+    @Bean
+    public static GrantedAuthorityDefaults grantedAuthorityDefaults() {
+        return new GrantedAuthorityDefaults("");
     }
 }

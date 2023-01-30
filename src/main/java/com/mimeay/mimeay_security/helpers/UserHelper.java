@@ -26,8 +26,8 @@ import java.util.stream.Collectors;
 public class UserHelper {
 
     private final List<User> users = Lists.newArrayList(
-            new User(1L, "陈", "mimeay", "123456", Lists.newArrayList("ROLE_USER")),
-            new User(2L, "晓池", "ithankzc", "123456", Lists.newArrayList("ROLE_ADMIN"))
+            new User(1L, "陈", "mimeay", "123456", Lists.newArrayList("USER")),
+            new User(2L, "晓池", "ithankzc", "123456", Lists.newArrayList("ADMIN"))
     );
 
     private User getUserById(Long id) {
