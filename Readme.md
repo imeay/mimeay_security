@@ -42,6 +42,7 @@
 > 详细见 IndexController
 > 
 相关代码
+
 ``` 
     @GetMapping("/no-public/user-info-0")
     String getUserInfo0(
@@ -78,5 +79,5 @@
         MimeayDetail mimeayDetail = (MimeayDetail) authentication.getPrincipal();
         return mimeayDetail;
     }
-    ```
+```
 
