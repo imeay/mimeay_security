@@ -29,6 +29,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+
         httpSecurity.authorizeRequests(
                 auth -> auth.anyRequest().authenticated()
         ).addFilterBefore(

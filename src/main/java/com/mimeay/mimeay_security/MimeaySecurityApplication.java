@@ -6,12 +6,15 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(jsr250Enabled = true)
+@EnableGlobalMethodSecurity(
+        jsr250Enabled = true,
+        securedEnabled = true,
+        prePostEnabled = true
+)
 @SpringBootApplication
 public class MimeaySecurityApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MimeaySecurityApplication.class, args);
     }
-
 }

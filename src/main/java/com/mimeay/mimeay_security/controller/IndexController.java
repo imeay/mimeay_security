@@ -7,6 +7,8 @@ import com.mimeay.mimeay_security.domian.business.MimeayDetail;
 import com.mimeay.mimeay_security.domian.inbound.UserAuthInbound;
 import com.mimeay.mimeay_security.helpers.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
@@ -92,9 +94,21 @@ public class IndexController {
      * @param mimeayDetail
      * @return
      */
-    @RolesAllowed("ADMIN")
-    @GetMapping("/no-public/admin-role")
-    String adminRole(
+    @Secured("ADMIN")
+    @GetMapping("/no-public/admin-role-secured")
+    String adminRoleOfSecured(
+            @AuthenticationPrincipal MimeayDetail mimeayDetail
+    ) {
+        return "hello adminRole, id: " + mimeayDetail.getId() + ", nickname:" + mimeayDetail.getNickname() + ", 权限列表: " + new Gson().toJson(mimeayDetail.getRoles());
+    }
+
+    /**
+     * @param mimeayDetail
+     * @return
+     */
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/no-public/admin-role-pre-authorize")
+    String adminRoleOfPreAuthorize(
             @AuthenticationPrincipal MimeayDetail mimeayDetail
     ) {
         return "hello adminRole, id: " + mimeayDetail.getId() + ", nickname:" + mimeayDetail.getNickname() + ", 权限列表: " + new Gson().toJson(mimeayDetail.getRoles());
